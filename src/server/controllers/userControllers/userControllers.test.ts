@@ -9,6 +9,7 @@ import {
 } from "../../../types.js";
 import User from "../../../database/models/User/User.js";
 import loginUser from "./userControllers.js";
+import CustomError from "../../CustomError/CustomError.js";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -67,6 +68,29 @@ describe("Given a loginUser controller function", () => {
       );
 
       expect(res.json).toHaveBeenCalledWith({ token });
+    });
+  });
+
+  describe("When it receives a request with invalid username and password", () => {
+    test("Then it should call the next function with a custom error with status 401 and message 'Wrong Credentials'", async () => {
+      const expectedStatus = 401;
+      const expectedMessage = "Wrong credentials";
+
+      const error = new CustomError(expectedStatus, expectedMessage);
+
+      User.findOne = jest.fn().mockReturnValue({
+        exec: jest.fn().mockResolvedValue(undefined),
+      });
+
+      bcrypt.compare = jest.fn().mockReturnValue(false);
+
+      await loginUser(
+        req as UserCredentialsRequest,
+        res as Response,
+        next as NextFunction
+      );
+
+      expect(next).toHaveBeenCalledWith(error);
     });
   });
 });
