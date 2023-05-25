@@ -1,23 +1,35 @@
 import { type NextFunction, type Request, type Response } from "express";
 import CustomError from "../../CustomError/CustomError.js";
-import { generalError } from "./errorMiddlewares.js";
+import { generalError, notFoundError } from "./errorMiddlewares.js";
 
 beforeEach(() => {
   jest.clearAllMocks();
 });
 
+const customErrorStatusCode = 404;
+const customErrorMessage = "Endpoint not found";
+
+const next = jest.fn();
+const req = {};
+const res: Partial<Response> = {
+  status: jest.fn().mockReturnThis(),
+  json: jest.fn(),
+};
+
+describe("Given a notFoundError middleware function", () => {
+  describe("When it receives a request and a next function", () => {
+    test("Then it shoud call next function with an error with status 404 and the message 'endpoint not found'", () => {
+      const error = new CustomError(customErrorStatusCode, customErrorMessage);
+
+      notFoundError(req as Request, res as Response, next as NextFunction);
+
+      expect(next).toHaveBeenCalledWith(error);
+    });
+  });
+});
+
 describe("Given a generalError middleware function", () => {
-  const next = jest.fn();
-  const req = {};
-  const res: Partial<Response> = {
-    status: jest.fn().mockReturnThis(),
-    json: jest.fn(),
-  };
-
   describe("when it receives a Custom error and a response", () => {
-    const customErrorStatusCode = 404;
-    const customErrorMessage = "Endpoint not found";
-
     const error = new CustomError(customErrorStatusCode, customErrorMessage);
 
     test("Then it should call the response's status with a 404", () => {

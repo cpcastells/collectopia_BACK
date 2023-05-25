@@ -11,7 +11,7 @@ export const notFoundError = (
   res: Response,
   next: NextFunction
 ) => {
-  const error = new CustomError(404, "Endpoint not foung");
+  const error = new CustomError(404, "Endpoint not found");
 
   next(error);
 };
