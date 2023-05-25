@@ -8,7 +8,7 @@
     {
       "extends": ["xo-typescript", "prettier"],
       "files": ["*.ts", "*.tsx"],
-      "rules": { "no-console": "error", "no-unused-vars": "off" }
+      "rules": { "no-console": "error", "no-unused-vars": "warn" }
     }
   ],
   "parserOptions": {
