@@ -4,7 +4,7 @@ import createDebug from "debug";
 import type CustomError from "../../CustomError/CustomError.js";
 import chalk from "chalk";
 
-const debug = createDebug("collectopia-api:root:server:middlewares:errors:");
+const debug = createDebug("collectopia-api:root:server:middlewares:errors");
 
 export const generalError = (
   error: CustomError,
