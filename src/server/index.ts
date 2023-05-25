@@ -5,6 +5,7 @@ import {
   generalError,
   notFoundError,
 } from "./middlewares/errors/errorMiddlewares.js";
+import pingController from "./controllers/ping/pingController.js";
 
 const allowedOrigin = process.env.ALLOWED_ORIGIN;
 
@@ -19,6 +20,8 @@ app.use(cors(options));
 app.disable("x-powered-by");
 
 app.use(morgan("dev"));
+
+app.get("/", pingController);
 
 app.use(notFoundError);
 
