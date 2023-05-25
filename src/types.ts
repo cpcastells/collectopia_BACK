@@ -4,6 +4,9 @@ export interface UserCredentials {
   username: string;
   password: string;
 }
+export interface UserCredentialsDatabaseStructure extends UserCredentials {
+  _id: string;
+}
 
 export type UserCredentialsRequest = Request<
   Record<string, unknown>,
