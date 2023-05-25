@@ -1,0 +1,6 @@
+.DS_Store
+dist
+.env
+node_modules
+.vscode
+coverage
