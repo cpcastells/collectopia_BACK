@@ -11,12 +11,23 @@
       "rules": {
         "no-console": "error",
         "no-unused-vars": "warn",
-        "@typescript-eslint/consistent-type-definitions": ["error", "interface"]
+        "@typescript-eslint/consistent-type-definitions": [
+          "error",
+          "interface"
+        ],
+        "new-cap": [
+          "error",
+          {
+            "capIsNewExceptions": ["Router"]
+          }
+        ]
       }
     },
     {
       "files": ["src/**/models/**/*.ts"],
-      "rules": { "@typescript-eslint/naming-convention": "off" }
+      "rules": {
+        "@typescript-eslint/naming-convention": "off"
+      }
     }
   ],
   "parserOptions": {
