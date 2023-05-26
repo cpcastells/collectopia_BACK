@@ -6,7 +6,7 @@ import {
   notFoundError,
 } from "./middlewares/errors/errorMiddlewares.js";
 import pingController from "./controllers/ping/pingController.js";
-import userRouter from "../routers/userRouter.js";
+import userRouter from "../routers/userRouter/userRouter.js";
 
 const allowedOrigin = process.env.ALLOWED_ORIGIN;
 
