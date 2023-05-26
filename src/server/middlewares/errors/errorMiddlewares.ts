@@ -3,6 +3,7 @@ import { type NextFunction, type Request, type Response } from "express";
 import createDebug from "debug";
 import CustomError from "../../CustomError/CustomError.js";
 import chalk from "chalk";
+import { ValidationError } from "express-validation";
 
 const debug = createDebug("collectopia-api:root:server:middlewares:errors");
 
@@ -23,6 +24,15 @@ export const generalError = (
   _next: NextFunction
 ) => {
   debug(chalk.red(error.message));
+
+  if (error instanceof ValidationError && error.details.body) {
+    const validationErrorMessage = error.details.body
+      .map((joiError) => joiError.message.replaceAll('"', " "))
+      .join(" & ");
+
+    (error as CustomError).publicMessage = validationErrorMessage;
+    debug(chalk.red(validationErrorMessage));
+  }
 
   const statusCode = error.statusCode || 500;
   const message = error.statusCode
