@@ -6,6 +6,7 @@ import {
   notFoundError,
 } from "./middlewares/errors/errorMiddlewares.js";
 import pingController from "./controllers/ping/pingController.js";
+import userRouter from "../routers/userRouter.js";
 
 const allowedOrigin = process.env.ALLOWED_ORIGIN;
 
@@ -15,6 +16,8 @@ const options: cors.CorsOptions = {
 
 const app = express();
 
+app.use(express.json());
+
 app.use(cors(options));
 
 app.disable("x-powered-by");
@@ -22,6 +25,8 @@ app.disable("x-powered-by");
 app.use(morgan("dev"));
 
 app.get("/", pingController);
+
+app.use("/user", userRouter);
 
 app.use(notFoundError);
 

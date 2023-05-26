@@ -1,6 +1,7 @@
 import { type NextFunction, type Request, type Response } from "express";
 import CustomError from "../../CustomError/CustomError.js";
 import { generalError, notFoundError } from "./errorMiddlewares.js";
+import { ValidationError } from "express-validation";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -83,6 +84,58 @@ describe("Given a generalError middleware function", () => {
       );
 
       expect(res.json).toHaveBeenCalledWith({ message: generalErrorMessage });
+    });
+  });
+
+  describe("When it receives a validationError and a response", () => {
+    const validationErrorMock = new ValidationError(
+      {
+        body: [
+          {
+            _original: "originalMock",
+            details: [
+              {
+                message: "Password not valid",
+                path: ["/user/login"],
+                type: "error",
+              },
+            ],
+            isJoi: true,
+            message: "Password not valid",
+            name: "ValidationError",
+            annotate: () => "mock",
+          },
+        ],
+      },
+      { statusCode: 400 }
+    );
+
+    test("Then it should call the response's status method with code 400", () => {
+      const validationErrorStatusCode = 400;
+
+      generalError(
+        validationErrorMock,
+        req as Request,
+        res as Response,
+        next as NextFunction
+      );
+
+      expect(res.status).toHaveBeenCalledWith(validationErrorStatusCode);
+    });
+
+    test("Then it should call the response's json method with the message 'Password not valid", () => {
+      const validationErrorMessage = "Password not valid";
+
+      generalError(
+        validationErrorMock,
+        req as Request,
+        res as Response,
+        next as NextFunction
+      );
+
+      expect(res.json).toHaveBeenCalledWith({
+        message: validationErrorMessage,
+      });
     });
   });
 });
