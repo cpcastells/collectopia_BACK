@@ -18,3 +18,25 @@ export type UserCredentialsRequest = Request<
   Record<string, unknown>,
   UserCredentials
 >;
+
+export interface CustomRequest extends Request {
+  userId: string;
+}
+
+export interface BoardgameDatabaseStructure {
+  _id: Types.ObjectId;
+  title: string;
+  image: string;
+  category: string;
+  mechanics: string;
+  players: {
+    min: number;
+    max?: number;
+  };
+  duration: number;
+  briefDescription: string;
+  price?: number;
+  author?: string;
+  releaseYear?: number;
+  user: Types.ObjectId;
+}
