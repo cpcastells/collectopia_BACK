@@ -8,7 +8,7 @@ import {
   type UserCredentialsRequest,
 } from "../../../types.js";
 import User from "../../../database/models/User/User.js";
-import loginUser from "./userControllers.js";
+import loginUser from "./usersControllers.js";
 import CustomError from "../../CustomError/CustomError.js";
 
 beforeEach(() => {
