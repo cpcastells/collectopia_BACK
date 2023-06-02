@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 import { type BoardgameDatabaseStructure } from "../types";
 
-export const boardGameMock: BoardgameDatabaseStructure[] = [
+export const boardGamesMock: BoardgameDatabaseStructure[] = [
   {
     _id: new Types.ObjectId(),
     title: "Terraforming Mars",
@@ -18,7 +18,7 @@ export const boardGameMock: BoardgameDatabaseStructure[] = [
     price: 70,
     author: "Jacob Fryxelius",
     releaseYear: 2016,
-    user: new Types.ObjectId(),
+    user: new Types.ObjectId("646f7e585189305e28a57d55"),
   },
   {
     _id: new Types.ObjectId(),
@@ -36,6 +36,6 @@ export const boardGameMock: BoardgameDatabaseStructure[] = [
     price: 60,
     author: "Martin Wallace",
     releaseYear: 2007,
-    user: new Types.ObjectId(),
+    user: new Types.ObjectId("646f7e585189305e28a57d55"),
   },
 ];

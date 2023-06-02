@@ -2,7 +2,7 @@ import { type NextFunction, type Response } from "express";
 import Boardgame from "../../../database/models/Boardgame/Boardgame.js";
 import { type CustomRequest } from "../../../types.js";
 import { getBoardgames } from "./boardgamesControllers.js";
-import { boardGameMock } from "../../../mocks/boardgameMocks.js";
+import { boardGamesMock } from "../../../mocks/boardgameMocks.js";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -19,7 +19,7 @@ describe("Given a getBoardgames controller function", () => {
   describe("When it receives a request with a user id and a response", () => {
     Boardgame.find = jest.fn().mockReturnValue({
       limit: jest.fn().mockReturnThis(),
-      exec: jest.fn().mockResolvedValue(boardGameMock),
+      exec: jest.fn().mockResolvedValue(boardGamesMock),
     });
 
     test("Then it should call the response's status method with '200'", async () => {
@@ -35,7 +35,7 @@ describe("Given a getBoardgames controller function", () => {
     });
 
     test("Then it should call the response's json method with a list of two boardgames", async () => {
-      const expectedBoardgames = boardGameMock;
+      const expectedBoardgames = boardGamesMock;
 
       await getBoardgames(
         req as CustomRequest,
