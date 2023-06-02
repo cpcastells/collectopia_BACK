@@ -1,0 +1,74 @@
+{
+  "info": {
+    "_postman_id": "09c1ab2b-9f41-4749-a0b6-05afee426d1b",
+    "name": "Carles-Pueyo-Final-Project-202304-bcn",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "27032619"
+  },
+  "item": [
+    {
+      "name": "GET /",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZmN2U1ODUxODkzMDVlMjhhNTdkNTUiLCJuYW1lIjoiSm9ubnkiLCJpYXQiOjE2ODU3MjI3NDgsImV4cCI6MTY4NjMyNzU0OH0.cHpkpcuySoKNUhJB8ErJLzhj9fWph4HGhbquABz6bxw",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/boardgames",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["boardgames"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /user/login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/user/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["user", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /  Ping",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": [""]
+        }
+      },
+      "response": []
+    }
+  ]
+}

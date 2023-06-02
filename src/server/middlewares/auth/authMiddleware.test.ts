@@ -1,4 +1,4 @@
-import { type Request, type Response } from "express";
+import { type NextFunction, type Request, type Response } from "express";
 import jwt from "jsonwebtoken";
 import { auth } from "./authMiddleware.js";
 import CustomError from "../../CustomError/CustomError.js";
@@ -21,9 +21,9 @@ describe("Given an auth middleware", () => {
     test("Then it should call the received next function", () => {
       jwt.verify = jest.fn().mockReturnValue("");
 
-      auth(req as CustomRequest, res as Response, next);
+      auth(req as CustomRequest, res as Response, next as NextFunction);
 
-      expect(next).toHaveBeenCalled();
+      expect(next).toHaveBeenCalledWith();
     });
   });
 
