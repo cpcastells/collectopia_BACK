@@ -7,6 +7,7 @@ import {
 } from "./middlewares/errors/errorMiddlewares.js";
 import pingController from "./controllers/ping/pingController.js";
 import userRouter from "../routers/userRouter/userRouter.js";
+import boardgamesRouter from "../routers/boardgames/boardgamesRouter.js";
 
 const allowedOrigin = process.env.ALLOWED_ORIGIN;
 
@@ -27,6 +28,8 @@ app.use(morgan("dev"));
 app.get("/", pingController);
 
 app.use("/user", userRouter);
+
+app.use("/boardgames", boardgamesRouter);
 
 app.use(notFoundError);
 
