@@ -21,6 +21,9 @@ export type UserCredentialsRequest = Request<
 
 export interface CustomRequest extends Request {
   userId: string;
+  params: {
+    boardgameId: string;
+  };
 }
 
 export interface BoardgameDatabaseStructure {
