@@ -1,8 +1,8 @@
 import { type NextFunction, type Response } from "express";
-import Boardgame from "../../../database/models/Boardgame/Boardgame.js";
-import { type CustomRequest } from "../../../types.js";
-import { getBoardgames } from "./boardgamesControllers.js";
-import { boardGamesMock } from "../../../mocks/boardgameMocks.js";
+import Boardgame from "../../../../database/models/Boardgame/Boardgame";
+import { boardGamesMock } from "../../../../mocks/boardgameMocks.js";
+import { getBoardgames } from "../boardgamesControllers";
+import { type CustomRequest } from "../../../../types.js";
 
 beforeEach(() => {
   jest.clearAllMocks();

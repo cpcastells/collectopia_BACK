@@ -42,3 +42,23 @@ describe("Given a GET /boardgames endpoint", () => {
     });
   });
 });
+
+describe("Given a DELETE /boardgames/:boardgameId endpoint", () => {
+  beforeEach(async () => {
+    await Boardgame.create(boardGamesMock);
+  });
+
+  describe("When it receives a request with a valid token and valid boardgame ID,", () => {
+    test("Then it should return a 200 status and a message 'Boardgame deleted!'", async () => {
+      const expectedStatus = 200;
+      const expectedMessage = "Boardgame deleted!";
+
+      const response = await request(app)
+        .delete(`/boardgames/${boardGamesMock[0]._id.toString()}`)
+        .set("Authorization", `Bearer ${tokenMock}`)
+        .expect(expectedStatus);
+
+      expect(response.body.message).toBe(expectedMessage);
+    });
+  });
+});

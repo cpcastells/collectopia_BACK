@@ -17,3 +17,24 @@ export const getBoardgames = async (
     next(error);
   }
 };
+
+export const deleteBoardgame = async (
+  req: CustomRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const user = req.userId;
+    const _id = req.params.boardgameId;
+
+    const boardgame = await Boardgame.findOneAndDelete({ _id, user }).exec();
+
+    if (!boardgame) {
+      res.status(404).json({ message: "Boardgame not found" });
+    }
+
+    res.status(200).json({ message: "Boardgame deleted!" });
+  } catch (error) {
+    next(error);
+  }
+};
