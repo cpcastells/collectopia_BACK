@@ -94,6 +94,40 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "POST /boardgames/create",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZmN2U1ODUxODkzMDVlMjhhNTdkNTUiLCJuYW1lIjoiSm9ubnkiLCJpYXQiOjE2ODU3MjI3NDgsImV4cCI6MTY4NjMyNzU0OH0.cHpkpcuySoKNUhJB8ErJLzhj9fWph4HGhbquABz6bxw",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Hive Pocket\",\r\n  \"image\":\r\n    \"https://media.discordapp.net/attachments/1114204200885301331/1114467463279681656/hive.webp?width=583&height=588\",\r\n  \"category\": \"Strategy\",\r\n  \"mechanics\": \"Route/Network Building\",\r\n  \"players\": {\r\n    \"min\": 2,\r\n    \"max\": 4\r\n  },\r\n  \"duration\": 160,\r\n  \"briefDescription\":\r\n    \"Brass: Lancashire is a game of economic strategy, set during the industrial revolution in Lancashire.\",\r\n  \"price\": 60,\r\n  \"author\": \"Martin Wallace\",\r\n  \"releaseYear\": 2007\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/boardgames/create",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["boardgames", "create"]
+        }
+      },
+      "response": []
     }
   ]
 }
