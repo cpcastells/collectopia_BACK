@@ -1,5 +1,8 @@
 import { Types } from "mongoose";
-import { type BoardgameDatabaseStructure } from "../types";
+import {
+  type BoardgameStructure,
+  type BoardgameDatabaseStructure,
+} from "../types";
 
 export const boardGamesMock: BoardgameDatabaseStructure[] = [
   {
@@ -39,3 +42,21 @@ export const boardGamesMock: BoardgameDatabaseStructure[] = [
     user: new Types.ObjectId("646f7e585189305e28a57d55"),
   },
 ];
+
+export const newBoardgameMock: BoardgameStructure = {
+  title: "Hive Pocket",
+  image:
+    "https://media.discordapp.net/attachments/1114204200885301331/1114467463279681656/hive.webp?width=583&height=588",
+  category: "Strategy",
+  mechanics: "Route/Network Building",
+  players: {
+    min: 2,
+    max: 4,
+  },
+  duration: 160,
+  briefDescription:
+    "Brass: Lancashire is a game of economic strategy, set during the industrial revolution in Lancashire.",
+  price: 60,
+  author: "Martin Wallace",
+  releaseYear: 2007,
+};
