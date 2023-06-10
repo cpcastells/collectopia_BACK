@@ -11,11 +11,17 @@ export const getBoardgames = async (
 ) => {
   try {
     const id = req.userId;
-    const limit = Number(req.query.limit);
+    const { limit, filter } = req.query;
+    const limitNumber = Number(limit);
 
-    const boardgames = await Boardgame.find({ user: id })
+    let query: Record<string, unknown> = { user: id };
+    if (filter) {
+      query = { ...query, category: filter };
+    }
+
+    const boardgames = await Boardgame.find(query)
       .sort({ _id: -1 })
-      .limit(limit)
+      .limit(limitNumber)
       .exec();
 
     res.status(200).json({ boardgames });
