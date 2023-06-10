@@ -22,6 +22,7 @@ describe("Given a getBoardgames controller function", () => {
   describe("When it receives a request with a user id and a response", () => {
     Boardgame.find = jest.fn().mockReturnValue({
       limit: jest.fn().mockReturnThis(),
+      sort: jest.fn().mockReturnThis(),
       exec: jest.fn().mockResolvedValue(boardGamesMock),
     });
 
@@ -56,6 +57,7 @@ describe("Given a getBoardgames controller function", () => {
 
       Boardgame.find = jest.fn().mockReturnValue({
         limit: jest.fn().mockReturnThis(),
+        sort: jest.fn().mockReturnThis(),
         exec: jest.fn().mockRejectedValue(expectedError),
       });
 
