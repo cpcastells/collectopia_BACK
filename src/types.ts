@@ -27,6 +27,7 @@ export interface CustomRequest extends Request {
   body: BoardgameStructure;
   query: {
     limit?: string;
+    filter?: string;
   };
 }
 

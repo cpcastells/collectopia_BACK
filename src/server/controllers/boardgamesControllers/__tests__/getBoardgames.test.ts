@@ -12,14 +12,14 @@ describe("Given a getBoardgames controller function", () => {
   const next = jest.fn();
   const req: Partial<CustomRequest> = {
     userId: "7686",
-    query: { limit: "5" },
+    query: { limit: "5", filter: "strategy" },
   };
   const res: Partial<Response> = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
   };
 
-  describe("When it receives a request with a user id and a response", () => {
+  describe("When it receives a request with a user id, a response, and a filter", () => {
     Boardgame.find = jest.fn().mockReturnValue({
       limit: jest.fn().mockReturnThis(),
       sort: jest.fn().mockReturnThis(),
@@ -38,7 +38,7 @@ describe("Given a getBoardgames controller function", () => {
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
 
-    test("Then it should call the response's json method with a list of two boardgames", async () => {
+    test("Then it should call the response's json method with a list of filtered boardgames", async () => {
       const expectedBoardgames = boardGamesMock;
 
       await getBoardgames(
