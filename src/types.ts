@@ -25,6 +25,9 @@ export interface CustomRequest extends Request {
     boardgameId: string;
   };
   body: BoardgameStructure;
+  query: {
+    limit?: string;
+  };
 }
 
 export interface BoardgameDatabaseStructure {
