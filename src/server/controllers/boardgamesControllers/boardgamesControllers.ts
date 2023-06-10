@@ -11,9 +11,12 @@ export const getBoardgames = async (
 ) => {
   try {
     const id = req.userId;
-    const limit = req.query.limit ? parseInt(req.query.limit, 10) : 5;
+    const limit = Number(req.query.limit);
 
-    const boardgames = await Boardgame.find({ user: id }).limit(limit).exec();
+    const boardgames = await Boardgame.find({ user: id })
+      .sort({ _id: -1 })
+      .limit(limit)
+      .exec();
 
     res.status(200).json({ boardgames });
   } catch (error) {
