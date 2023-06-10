@@ -10,7 +10,10 @@ beforeEach(() => {
 
 describe("Given a getBoardgames controller function", () => {
   const next = jest.fn();
-  const req = {};
+  const req: Partial<CustomRequest> = {
+    userId: "7686",
+    query: { limit: "5" },
+  };
   const res: Partial<Response> = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
