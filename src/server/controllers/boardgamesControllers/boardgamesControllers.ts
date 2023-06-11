@@ -15,6 +15,7 @@ export const getBoardgames = async (
     const limitNumber = Number(limit);
 
     let query: Record<string, unknown> = { user: id };
+
     if (filter) {
       query = { ...query, category: filter };
     }
