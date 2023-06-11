@@ -26,6 +26,10 @@ describe("Given a getBoardgames controller function", () => {
       exec: jest.fn().mockResolvedValue(boardGamesMock),
     });
 
+    Boardgame.where = jest.fn().mockReturnValue({
+      countDocuments: jest.fn().mockReturnValue(boardGamesMock.length),
+    });
+
     test("Then it should call the response's status method with '200'", async () => {
       const expectedStatusCode = 200;
 
@@ -47,7 +51,10 @@ describe("Given a getBoardgames controller function", () => {
         next as NextFunction
       );
 
-      expect(res.json).toHaveBeenCalledWith({ boardgames: expectedBoardgames });
+      expect(res.json).toHaveBeenCalledWith({
+        boardgames: expectedBoardgames,
+        totalBoardgames: expectedBoardgames.length,
+      });
     });
   });
 

@@ -15,6 +15,7 @@ export const getBoardgames = async (
     const limitNumber = Number(limit);
 
     let query: Record<string, unknown> = { user: id };
+
     if (filter) {
       query = { ...query, category: filter };
     }
@@ -24,7 +25,9 @@ export const getBoardgames = async (
       .limit(limitNumber)
       .exec();
 
-    res.status(200).json({ boardgames });
+    const totalBoardgames = await Boardgame.where().countDocuments();
+
+    res.status(200).json({ boardgames, totalBoardgames });
   } catch (error) {
     next(error);
   }
