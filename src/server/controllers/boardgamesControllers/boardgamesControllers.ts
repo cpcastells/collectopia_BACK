@@ -81,3 +81,23 @@ export const createBoardgame = async (
     next(error);
   }
 };
+
+export const getBoardgameById = async (
+  req: CustomRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const _id = req.params.boardgameId;
+
+    const boardgame = await Boardgame.findById({ _id }).exec();
+
+    if (!boardgame) {
+      return res.status(404).json({ message: "Boardgame not found" });
+    }
+
+    res.status(200).json({ boardgame });
+  } catch (error) {
+    next(error);
+  }
+};

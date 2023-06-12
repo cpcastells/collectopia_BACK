@@ -6,7 +6,7 @@ import {
 
 export const boardGamesMock: BoardgameDatabaseStructure[] = [
   {
-    _id: new Types.ObjectId(),
+    _id: new Types.ObjectId("6478dd2fe3e61710d8baa049"),
     title: "Terraforming Mars",
     image: "terraforming_mars_image_url",
     category: "Strategy",
@@ -59,4 +59,22 @@ export const newBoardgameMock: BoardgameStructure = {
   price: 60,
   author: "Martin Wallace",
   releaseYear: 2007,
+};
+
+export const boardgameByIdMock = {
+  title: "Terraforming Mars",
+  image: "terraforming_mars_image_url",
+  category: "Strategy",
+  mechanics: "Card Drafting",
+  players: {
+    min: 1,
+    max: 5,
+  },
+  duration: 150,
+  briefDescription:
+    "Terraforming Mars is a science fiction board game where players act as corporations to transform Mars into a habitable planet.",
+  price: 70,
+  author: "Jacob Fryxelius",
+  releaseYear: 2016,
+  user: "646f7e585189305e28a57d55",
 };
