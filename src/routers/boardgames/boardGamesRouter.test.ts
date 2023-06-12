@@ -4,6 +4,7 @@ import connectToDatabase from "../../database/connectToDatabase.js";
 import Boardgame from "../../database/models/Boardgame/Boardgame.js";
 import {
   boardGamesMock,
+  boardgameByIdMock,
   newBoardgameMock,
 } from "../../mocks/boardgameMocks.js";
 import app from "../../server/index.js";
@@ -79,6 +80,44 @@ describe("Given a POST /boardgames/create endpoint", () => {
         .expect(expectedStatus);
 
       expect(response.body).toHaveProperty("boardgame");
+    });
+  });
+});
+
+describe("Given a GET /boardgames/:boardgameId", () => {
+  describe("When it receives a request with a valid token and valid boardgame ID", () => {
+    test("Then it should return a 200 status and a a boardgame with that ID", async () => {
+      const boardgame = await Boardgame.create(boardgameByIdMock);
+
+      const selectedId = boardgame._id.toString();
+
+      const returnedBoardgame = {
+        id: selectedId,
+        title: "Terraforming Mars",
+        image: "terraforming_mars_image_url",
+        category: "Strategy",
+        mechanics: "Card Drafting",
+        players: {
+          min: 1,
+          max: 5,
+        },
+        duration: 150,
+        briefDescription:
+          "Terraforming Mars is a science fiction board game where players act as corporations to transform Mars into a habitable planet.",
+        price: 70,
+        author: "Jacob Fryxelius",
+        releaseYear: 2016,
+        user: "646f7e585189305e28a57d55",
+      };
+
+      const expectedStatus = 200;
+
+      const response = await request(app)
+        .get(`/boardgames/${selectedId}`)
+        .set("Authorization", `Bearer ${tokenMock}`)
+        .expect(expectedStatus);
+
+      expect(response.body.boardgame).toStrictEqual(returnedBoardgame);
     });
   });
 });
