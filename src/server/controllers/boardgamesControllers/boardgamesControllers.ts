@@ -25,7 +25,7 @@ export const getBoardgames = async (
       .limit(limitNumber)
       .exec();
 
-    const totalBoardgames = await Boardgame.where().countDocuments();
+    const totalBoardgames = await Boardgame.where(query).countDocuments();
 
     res.status(200).json({ boardgames, totalBoardgames });
   } catch (error) {
