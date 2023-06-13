@@ -27,7 +27,8 @@ describe("Given a getBoardgames controller function", () => {
     });
 
     Boardgame.where = jest.fn().mockReturnValue({
-      countDocuments: jest.fn().mockReturnValue(boardGamesMock.length),
+      countDocuments: jest.fn().mockReturnThis(),
+      exec: jest.fn().mockResolvedValue(boardGamesMock.length),
     });
 
     test("Then it should call the response's status method with '200'", async () => {
