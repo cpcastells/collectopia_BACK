@@ -27,7 +27,7 @@ afterEach(async () => {
 });
 
 const tokenMock =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZmN2U1ODUxODkzMDVlMjhhNTdkNTUiLCJuYW1lIjoiSm9ubnkiLCJpYXQiOjE2ODYyNjU3NTMsImV4cCI6MTY4Njg3MDU1M30.wbRC7-sqVGPKlPjR1cH-LXLcRei2E829vKiuAb1I5cE";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZmN2U1ODUxODkzMDVlMjhhNTdkNTUiLCJuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.dRVJzzb0XSt0a6r-BnRub91pvbhN8JfateG-r-W-FyM";
 
 describe("Given a GET /boardgames endpoint", () => {
   beforeEach(async () => {
