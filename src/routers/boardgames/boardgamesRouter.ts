@@ -4,6 +4,7 @@ import {
   deleteBoardgame,
   getBoardgameById,
   getBoardgames,
+  updateBoardgame,
 } from "../../server/controllers/boardgamesControllers/boardgamesControllers.js";
 import { auth } from "../../server/middlewares/auth/authMiddleware.js";
 
@@ -16,5 +17,7 @@ boardgamesRouter.delete("/:boardgameId", auth, deleteBoardgame);
 boardgamesRouter.post("/create", auth, createBoardgame);
 
 boardgamesRouter.get("/:boardgameId", auth, getBoardgameById);
+
+boardgamesRouter.put("/update", auth, updateBoardgame);
 
 export default boardgamesRouter;
