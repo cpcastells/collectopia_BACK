@@ -78,3 +78,22 @@ export const boardgameByIdMock = {
   releaseYear: 2016,
   user: "646f7e585189305e28a57d55",
 };
+
+export const boardgameCardMock = {
+  title: "Terraforming Mars",
+  image: "terraforming_mars_image_url",
+  category: "Strategy",
+  mechanics: "Card Drafting",
+  players: {
+    min: 1,
+    max: 5,
+  },
+  duration: 150,
+  briefDescription:
+    "Terraforming Mars is a science fiction board game where players act as corporations to transform Mars into a habitable planet.",
+  price: 70,
+  author: "Jacob Fryxelius",
+  releaseYear: 2016,
+  user: "646f7e585189305e28a57d55",
+  id: "6478dd2fe3e61710d8baa049",
+};
