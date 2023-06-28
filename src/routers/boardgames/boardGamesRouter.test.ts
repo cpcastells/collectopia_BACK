@@ -5,6 +5,7 @@ import Boardgame from "../../database/models/Boardgame/Boardgame.js";
 import {
   boardGamesMock,
   boardgameByIdMock,
+  boardgameCardMock,
   newBoardgameMock,
 } from "../../mocks/boardgameMocks.js";
 import app from "../../server/index.js";
@@ -118,6 +119,25 @@ describe("Given a GET /boardgames/:boardgameId", () => {
         .expect(expectedStatus);
 
       expect(response.body.boardgame).toStrictEqual(returnedBoardgame);
+    });
+  });
+});
+
+describe("Given a PUT /update endpoint", () => {
+  describe("When it receives a request with a userId and a valid boardgame", () => {
+    test("Then it should return status 200 and a message 'Boardgame was succesfully updated'", async () => {
+      await Boardgame.create(boardGamesMock);
+
+      const expectedMessage = "Boardgame was succesfully updated";
+      const expectedStatus = 200;
+
+      const response = await request(app)
+        .put("/boardgames/update")
+        .send(boardgameCardMock)
+        .set("Authorization", `Bearer ${tokenMock}`)
+        .expect(expectedStatus);
+
+      expect(response.body.message).toBe(expectedMessage);
     });
   });
 });
