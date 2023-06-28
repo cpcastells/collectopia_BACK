@@ -64,3 +64,13 @@ export interface BoardgameStructure {
   author?: string;
   releaseYear?: number;
 }
+
+export interface BoardgameCardStructure extends BoardgameStructure {
+  id: string;
+  user: string;
+}
+
+export interface CustomRequestUpdate extends Request {
+  userId: string;
+  body: BoardgameCardStructure;
+}

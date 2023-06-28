@@ -1,6 +1,9 @@
 import { type NextFunction, type Response } from "express";
 import Boardgame from "../../../database/models/Boardgame/Boardgame.js";
-import { type CustomRequest } from "../../../types.js";
+import {
+  type CustomRequestUpdate,
+  type CustomRequest,
+} from "../../../types.js";
 import { Types } from "mongoose";
 import CustomError from "../../CustomError/CustomError.js";
 
@@ -99,6 +102,29 @@ export const getBoardgameById = async (
     }
 
     res.status(200).json({ boardgame });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateBoardgame = async (
+  req: CustomRequestUpdate,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { body, userId } = req;
+
+    await Boardgame.findByIdAndUpdate(
+      { _id: new Types.ObjectId(body.id) },
+      {
+        ...body,
+        user: new Types.ObjectId(userId),
+        _id: new Types.ObjectId(body.id),
+      }
+    ).exec();
+
+    res.status(200).json({ message: "Boardgame was succesfully updated" });
   } catch (error) {
     next(error);
   }
