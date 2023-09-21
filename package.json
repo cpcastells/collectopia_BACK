@@ -42,7 +42,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@types/bcryptjs": "^2.4.2",
+    "@types/bcryptjs": "^2.4.3",
     "@types/cors": "^2.8.13",
     "@types/debug": "^4.1.8",
     "@types/jsonwebtoken": "^9.0.2",
